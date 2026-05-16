@@ -1,0 +1,7 @@
+# Git Ignore
+.DS_Store
+Thumbs.db
+node_modules/
+dist/
+.env
+*.log

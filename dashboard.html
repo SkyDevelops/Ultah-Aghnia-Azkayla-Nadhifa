@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="description" content="Baby Shark doo doo doo! Selamat datang di pesta ulang tahun bawah laut Kayla yang ke-2!" />
+  <title>🦈 Pesta Bawah Laut Kayla!</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦈</text></svg>" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+  <span class="loading-icon">🦈</span>
+  <p class="loading-text">Menyelam ke pesta bawah laut...</p>
+</div>
+
+<!-- Bubble Canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Floating Bubbles -->
+<div class="floating-bg" aria-hidden="true">
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+</div>
+
+<main class="dashboard-page" id="dashboardPage" style="display:none">
+
+  <!-- ========== SECTION 1: WELCOME ========== -->
+  <section class="welcome-section" id="welcomeSection">
+    <!-- Swimming fish -->
+    <div class="welcome-fish" aria-hidden="true">
+      <span class="swim-fish">🐠</span>
+      <span class="swim-fish">🐟</span>
+      <span class="swim-fish">🦈</span>
+      <span class="swim-fish">🐡</span>
+      <span class="swim-fish">🐬</span>
+      <span class="swim-fish">🐙</span>
+    </div>
+
+    <div class="welcome-greeting-chip" id="greetingChip">
+      <span>🫧</span>
+      <span id="chipName">Halo, Tamu!</span>
+    </div>
+
+    <h1 class="welcome-heading">
+      Selamat Datang,
+      <span class="guest-name-display" id="guestNameDisplay">Tamu Istimewa!</span>
+    </h1>
+
+    <p class="welcome-sub">
+      Baby Shark doo doo doo doo! 🦈 Terima kasih hadir di pesta bawah laut <strong id="childNameWelcome">Kayla</strong> yang ke-<strong id="childAge">2</strong>!
+    </p>
+
+    <div class="countdown-card" id="countdownCard">
+      <div class="countdown-unit">
+        <span class="countdown-number" id="countDays">00</span>
+        <span class="countdown-label">Hari</span>
+      </div>
+      <span class="countdown-divider">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="countHours">00</span>
+        <span class="countdown-label">Jam</span>
+      </div>
+      <span class="countdown-divider">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="countMins">00</span>
+        <span class="countdown-label">Menit</span>
+      </div>
+      <span class="countdown-divider">:</span>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="countSecs">00</span>
+        <span class="countdown-label">Detik</span>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Selam ke bawah 🫧</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 2: ABOUT ========== -->
+  <section class="about-section" id="aboutSection">
+    <div class="about-inner">
+      <div class="text-center reveal">
+        <span class="section-badge">🦈 Baby Shark</span>
+        <h2 class="section-title" id="aboutTitle">Kayla Putri Cantika</h2>
+        <p class="section-subtitle">Si kecil baby shark yang menggemaskan! 🐠💕</p>
+      </div>
+
+      <div class="polaroid-wrapper reveal">
+        <div class="polaroid">
+          <div class="polaroid-placeholder" id="polaroidImg">
+            <span>🦈</span>
+            <small style="font-size:0.7rem;color:var(--text-muted)">Foto Kayla</small>
+          </div>
+          <div class="polaroid-caption" id="polaroidCaption">Baby Shark Kayla — 2 Tahun! 🎂</div>
+          <div class="polaroid-sticker">⭐</div>
+        </div>
+      </div>
+
+      <div class="about-info-card reveal">
+        <div class="about-info-row">
+          <div class="about-info-icon icon-pink">🦈</div>
+          <div>
+            <div class="about-info-label">Nama Lengkap</div>
+            <div class="about-info-value" id="aboutName">Kayla Putri Cantika</div>
+          </div>
+        </div>
+        <div class="about-info-row">
+          <div class="about-info-icon icon-blue">📅</div>
+          <div>
+            <div class="about-info-label">Tanggal Lahir</div>
+            <div class="about-info-value" id="aboutBirth">17 Mei 2024</div>
+          </div>
+        </div>
+        <div class="about-info-row">
+          <div class="about-info-icon icon-yellow">🎂</div>
+          <div>
+            <div class="about-info-label">Usia</div>
+            <div class="about-info-value" id="aboutAge">2 Tahun!</div>
+          </div>
+        </div>
+        <div class="about-info-row">
+          <div class="about-info-icon icon-mint">🐠</div>
+          <div>
+            <div class="about-info-label">Lagu Favorit</div>
+            <div class="about-info-value">Baby Shark doo doo doo! 🎵</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fun-quote reveal">
+        <div class="fun-quote-text">"Dua tahun berenang di lautan cinta! 🌊 Si kecil Baby Shark yang selalu bikin tersenyum."</div>
+        <div class="fun-quote-author">— Mommy & Daddy Shark 🦈💕</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 3: EVENT DETAILS ========== -->
+  <section class="event-section" id="eventSection">
+    <div class="event-inner">
+      <div class="text-center reveal">
+        <span class="section-badge">📍 Lokasi Pesta</span>
+        <h2 class="section-title">Ayo Berenang ke Pesta! 🐬</h2>
+        <p class="section-subtitle">Kami tunggu kehadirannya di bawah laut~ 🫧</p>
+      </div>
+
+      <div class="event-main-card reveal">
+        <div class="event-card-header">
+          <h3>🦈 Baby Shark Party!</h3>
+          <p id="eventChildName">Kayla Putri Cantika</p>
+        </div>
+        <div class="event-card-body">
+          <div class="event-detail-item">
+            <div class="event-detail-icon" style="background:#B2EBF2">📅</div>
+            <div>
+              <div class="event-detail-label">Hari & Tanggal</div>
+              <div class="event-detail-value" id="eventDate">Sabtu, 17 Mei 2026</div>
+            </div>
+          </div>
+          <div class="event-detail-item">
+            <div class="event-detail-icon" style="background:#FFF9C4">🕐</div>
+            <div>
+              <div class="event-detail-label">Waktu</div>
+              <div class="event-detail-value" id="eventTime">10.00 WIB - Selesai</div>
+            </div>
+          </div>
+          <div class="event-detail-item">
+            <div class="event-detail-icon" style="background:#C8E6C9">🏠</div>
+            <div>
+              <div class="event-detail-label">Tempat</div>
+              <div class="event-detail-value" id="eventVenue">Aula Grand Ballroom</div>
+            </div>
+          </div>
+          <div class="event-detail-item">
+            <div class="event-detail-icon" style="background:#B2DFDB">📍</div>
+            <div>
+              <div class="event-detail-label">Alamat</div>
+              <div class="event-detail-value" id="eventAddress">Jl. Merpati No. 12, Surabaya</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="maps-btn reveal" id="mapsBtn" href="#" target="_blank" rel="noopener noreferrer">
+        🗺️ Buka di Google Maps
+      </a>
+
+      <div class="dresscode-card reveal">
+        <span class="dresscode-icon">🐠</span>
+        <div>
+          <div class="dresscode-label">Dress Code</div>
+          <div class="dresscode-value" id="eventDresscode">Ocean Blue & Sea Creatures 🌊</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 4: ALBUM ========== -->
+  <section class="album-section" id="albumSection">
+    <div class="album-inner">
+      <div class="text-center reveal">
+        <span class="section-badge">📸 Album</span>
+        <h2 class="section-title">Momen Si Baby Shark! 🦈</h2>
+        <p class="section-subtitle">Foto & video keseruan si kecil di lautan 🐠📷</p>
+      </div>
+
+      <div class="album-grid reveal" id="albumGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 5: WISHES ========== -->
+  <section class="wishes-section" id="wishesSection">
+    <div class="wishes-inner">
+      <div class="text-center reveal">
+        <span class="section-badge">🫧 Ucapan</span>
+        <h2 class="section-title">Kirim Ucapanmu! 💌</h2>
+        <p class="section-subtitle">Tulis ucapan terbaikmu untuk Baby Shark Kayla 🦈</p>
+      </div>
+
+      <div class="wish-form-card reveal">
+        <div class="wish-form-title">🫧 Tulis Ucapan</div>
+        <form id="wishForm" autocomplete="off">
+          <div class="form-group">
+            <label class="form-label" for="wishName">Nama</label>
+            <input type="text" class="form-input" id="wishName" placeholder="Nama kamu..." maxlength="50" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="wishMessage">Ucapan</label>
+            <textarea class="form-textarea" id="wishMessage" placeholder="Tulis ucapan untuk Baby Shark Kayla..." maxlength="300" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tambahkan Emoji</label>
+            <div class="emoji-picks" id="emojiPicks">
+              <button type="button" class="emoji-pick-btn">🦈</button>
+              <button type="button" class="emoji-pick-btn">🐠</button>
+              <button type="button" class="emoji-pick-btn">🐟</button>
+              <button type="button" class="emoji-pick-btn">🫧</button>
+              <button type="button" class="emoji-pick-btn">🌊</button>
+              <button type="button" class="emoji-pick-btn">🐬</button>
+              <button type="button" class="emoji-pick-btn">🐙</button>
+              <button type="button" class="emoji-pick-btn">🎂</button>
+              <button type="button" class="emoji-pick-btn">🎉</button>
+              <button type="button" class="emoji-pick-btn">💕</button>
+            </div>
+          </div>
+          <button type="submit" class="submit-wish-btn" id="submitWishBtn">
+            🫧 Kirim Ucapan
+          </button>
+        </form>
+      </div>
+
+      <div id="wishesList" class="wishes-list"></div>
+
+      <div class="wish-empty" id="wishEmpty">
+        <span class="wish-empty-icon">🫧</span>
+        <p>Belum ada ucapan.<br>Jadilah yang pertama mengirim gelembung! 🐠</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 6: MUSIC PLAYER ========== -->
+  <section class="music-section" id="musicSection">
+    <div class="music-inner">
+      <div class="text-center reveal">
+        <span class="section-badge">🎵 Playlist</span>
+        <h2 class="section-title">Baby Shark Song! 🦈</h2>
+        <p class="section-subtitle">Yuk dengerin lagu favorit si kecil! doo doo doo~</p>
+      </div>
+
+      <div class="music-card reveal">
+        <div class="music-artwork">
+          <div class="music-artwork-inner">🦈</div>
+          <div class="music-disc" id="musicDisc"></div>
+        </div>
+        <div class="music-info">
+          <div class="music-title">Baby Shark</div>
+          <div class="music-artist">Pinkfong</div>
+          <div class="music-progress-bar" id="progressBar">
+            <div class="music-progress-fill" id="progressFill"></div>
+          </div>
+          <div class="music-time">
+            <span id="currentTime">0:00</span>
+            <span id="totalTime">0:00</span>
+          </div>
+        </div>
+        <div class="music-controls">
+          <button class="music-btn volume-btn" id="volDown" aria-label="Volume Down">🔉</button>
+          <button class="music-btn play-btn" id="playBtn" aria-label="Play">▶️</button>
+          <button class="music-btn volume-btn" id="volUp" aria-label="Volume Up">🔊</button>
+        </div>
+        <div class="music-volume-display" id="volumeDisplay">🔊 100%</div>
+      </div>
+
+      <audio id="bgMusic" preload="auto" loop>
+        <source src="public/audio/baby-shark.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="dashboard-footer">
+  <div class="footer-inner">
+    <p class="footer-text">Dibuat dengan 🦈 untuk <strong id="footerChildName">Jimbuy</strong> · Baby Shark Party!</p>
+    <a href="admin.html" class="footer-admin-btn" id="adminLink">🔒 Admin Panel</a>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Lihat gambar">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Tutup">✕</button>
+  <div class="lightbox-content" id="lightboxContent"></div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Scripts -->
+<script src="data/guests.js"></script>
+<script src="js/confetti.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

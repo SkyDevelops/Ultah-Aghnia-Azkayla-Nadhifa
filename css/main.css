@@ -1,0 +1,324 @@
+/* =========================================
+   KAYLA's 2nd BIRTHDAY — GLOBAL CSS
+   Theme: Baby Shark / Ocean / Underwater 🦈
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+/* ---- CSS Variables ---- */
+:root {
+  --ocean-deep:    #0A2647;
+  --ocean:         #144272;
+  --ocean-mid:     #205295;
+  --ocean-light:   #2C74B3;
+  --sky-blue:      #87CEEB;
+  --aqua:          #00BCD4;
+  --aqua-light:    #B2EBF2;
+  --teal:          #009688;
+  --teal-light:    #B2DFDB;
+  --sand:          #F5E6CA;
+  --sand-light:    #FFF8EE;
+  --yellow:        #FFD700;
+  --yellow-light:  #FFF9C4;
+  --coral:         #FF7F50;
+  --coral-light:   #FFCCBC;
+  --pink-fish:     #FF8FAB;
+  --bg:            #E8F6FF;
+  --bg2:           #D4F1FF;
+  --card-bg:       rgba(255,255,255,0.88);
+  --text:          #0A2647;
+  --text-light:    #3A5F8A;
+  --text-muted:    #7BA3C9;
+  --shadow:        0 8px 32px rgba(10,38,71,0.12);
+  --shadow-card:   0 4px 20px rgba(10,38,71,0.1);
+  --radius:        24px;
+  --radius-sm:     14px;
+  --radius-pill:   999px;
+  --font-display:  'Baloo 2', cursive;
+  --font-body:     'Nunito', sans-serif;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--aqua-light); }
+::-webkit-scrollbar-thumb { background: var(--ocean-light); border-radius: 99px; }
+
+/* ---- Typography ---- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--text);
+  line-height: 1.2;
+}
+
+p { font-family: var(--font-body); }
+
+/* ---- Utility Classes ---- */
+.text-center { text-align: center; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(.34,1.56,.64,1);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--aqua), var(--ocean-light));
+  color: white;
+  box-shadow: 0 6px 20px rgba(0,188,212,0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(0,188,212,0.45);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--ocean-light);
+  border: 2px solid var(--aqua-light);
+  box-shadow: var(--shadow-card);
+}
+
+.btn-secondary:hover {
+  background: var(--aqua-light);
+  transform: translateY(-2px);
+}
+
+/* ---- Cards ---- */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(0,188,212,0.2);
+  overflow: hidden;
+}
+
+/* ---- Floating Bubbles Background ---- */
+.floating-bg {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.float-shape {
+  position: absolute;
+  border-radius: 50%;
+  animation: bubbleRise 12s ease-in-out infinite;
+  border: 2px solid rgba(255,255,255,0.2);
+}
+
+.float-shape:nth-child(1) {
+  width: 60px; height: 60px;
+  background: rgba(0,188,212,0.08);
+  bottom: -80px; left: 10%;
+  animation-delay: 0s;
+  animation-duration: 14s;
+}
+.float-shape:nth-child(2) {
+  width: 40px; height: 40px;
+  background: rgba(135,206,235,0.1);
+  bottom: -80px; left: 35%;
+  animation-delay: 3s;
+  animation-duration: 16s;
+}
+.float-shape:nth-child(3) {
+  width: 50px; height: 50px;
+  background: rgba(0,150,136,0.08);
+  bottom: -80px; right: 20%;
+  animation-delay: 5s;
+  animation-duration: 13s;
+}
+.float-shape:nth-child(4) {
+  width: 35px; height: 35px;
+  background: rgba(0,188,212,0.1);
+  bottom: -80px; right: 10%;
+  animation-delay: 8s;
+  animation-duration: 15s;
+}
+.float-shape:nth-child(5) {
+  width: 25px; height: 25px;
+  background: rgba(255,215,0,0.1);
+  bottom: -80px; left: 60%;
+  animation-delay: 2s;
+  animation-duration: 11s;
+}
+.float-shape:nth-child(6) {
+  width: 45px; height: 45px;
+  background: rgba(135,206,235,0.08);
+  bottom: -80px; left: 80%;
+  animation-delay: 7s;
+  animation-duration: 17s;
+}
+
+@keyframes bubbleRise {
+  0%   { transform: translateY(0) scale(1); opacity: 0; }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-110vh) scale(0.5); opacity: 0; }
+}
+
+/* ---- Page Transition ---- */
+.page-enter {
+  animation: pageIn 0.6s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Scroll Reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.16,1,.3,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Bubble Canvas ---- */
+#confetti-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* ---- Section Title ---- */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 800;
+  text-align: center;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--aqua-light);
+  color: var(--ocean);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ---- Toast ---- */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--ocean-deep);
+  color: white;
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.9rem;
+  z-index: 10000;
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+  white-space: nowrap;
+  max-width: 90vw;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---- Loading Screen ---- */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #87CEEB 0%, #0A2647 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  gap: 16px;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-icon {
+  font-size: 3.5rem;
+  animation: fishSwim 1.5s ease-in-out infinite;
+}
+
+@keyframes fishSwim {
+  0%, 100% { transform: translateX(-10px) scaleX(1); }
+  50%       { transform: translateX(10px) scaleX(1); }
+}
+
+.loading-text {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  .btn { padding: 12px 22px; font-size: 0.9rem; }
+}

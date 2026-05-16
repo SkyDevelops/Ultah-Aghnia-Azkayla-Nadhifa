@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="description" content="Undangan Ulang Tahun Kayla yang ke-2 — Tema Baby Shark! Pilih namamu dan masuk ke pesta bawah laut!" />
+  <title>🦈 Baby Shark! Undangan Ulang Tahun Kayla</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦈</text></svg>" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/guest.css" />
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+  <span class="loading-icon">🦈</span>
+  <p class="loading-text">Menyelam ke pesta...</p>
+</div>
+
+<!-- Bubble Canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Floating Bubbles Background -->
+<div class="floating-bg" aria-hidden="true">
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+  <div class="float-shape"></div>
+</div>
+
+<!-- Main Page -->
+<main class="guest-page page-enter" id="mainPage" style="display:none">
+
+  <!-- Hero Header -->
+  <header class="guest-hero">
+    <div class="hero-sea-creatures" aria-hidden="true">
+      <span>🦈</span>
+      <span>🐠</span>
+      <span>🐙</span>
+      <span>🐟</span>
+      <span>🐚</span>
+    </div>
+    <h1 class="guest-hero-title">
+      <span class="title-accent">Baby Shark!</span><br>
+      Kayla's Birthday 🎂
+    </h1>
+    <p class="guest-hero-sub">doo doo doo doo doo doo ~ Selamat datang di pesta bawah laut!</p>
+    <div class="age-badge">⭐ 2 Tahun Yang Luar Biasa! ⭐</div>
+  </header>
+
+  <!-- Instruction -->
+  <div class="guest-instruction">
+    <p>
+      <span>🫧</span>
+      Pilih namamu dalam daftar tamu di bawah ini
+    </p>
+  </div>
+
+  <!-- Search Box -->
+  <div class="search-wrapper">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="searchInput"
+        placeholder="Cari namamu di sini..."
+        autocomplete="off" autocorrect="off" spellcheck="false"
+        inputmode="search" aria-label="Cari nama tamu" />
+    </div>
+  </div>
+
+  <!-- Guest List -->
+  <section class="guest-list-section" aria-label="Daftar Tamu">
+    <p class="guest-count" id="guestCount"></p>
+    <div class="guest-grid" id="guestGrid" role="list"></div>
+    <div class="no-results" id="noResults" aria-live="polite">
+      <span class="no-results-icon">🐡</span>
+      <p>Nama tidak ditemukan.<br>Coba kata kunci yang berbeda.</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="guest-footer">
+  <p>Dibuat dengan 🦈 untuk <strong>Kayla</strong> · Baby Shark Party!</p>
+</footer>
+
+<!-- Scripts -->
+<script src="data/guests.js"></script>
+<script src="js/confetti.js"></script>
+<script src="js/guest.js"></script>
+</body>
+</html>
