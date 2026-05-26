@@ -202,6 +202,14 @@
   let currentVolume = 1.0;
   let progressInterval = null;
 
+  function syncMusicUi() {
+    if (!playlist || playlist.length === 0) return;
+    if (currentTrackIndex < 0 || currentTrackIndex >= playlist.length) currentTrackIndex = 0;
+    const track = playlist[currentTrackIndex];
+    if (musicTitle) musicTitle.textContent = track.title || "Lagu Ulang Tahun";
+    if (musicArtist) musicArtist.textContent = track.artist || "Playlist Kayla";
+  }
+
   // Initialize Supabase
   if (isSupabaseConfigured && window.supabase && typeof window.supabase.createClient === "function") {
     try {
@@ -295,6 +303,8 @@
 
         if (songs && songs.length > 0 && !songErr) {
           playlist = songs;
+          currentTrackIndex = Math.max(0, playlist.length - 1);
+          syncMusicUi();
         }
       } catch (err) {
         console.error("Error fetching Supabase data:", err);
@@ -517,7 +527,7 @@
       let inner = `<div class="album-item-inner">`;
 
       if (isVideo) {
-        inner += `<video src="${safeMediaUrl(a.file_url)}" muted preload="metadata" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></video>`;
+        inner += `<video src="${safeMediaUrl(a.file_url)}" muted autoplay loop playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0"></video>`;
         inner += `<div class="video-overlay"><div class="play-btn-circle">▶</div></div>`;
       } else {
         inner += `<img src="${safeMediaUrl(a.file_url)}" alt="${escapeHtml(a.label)}" loading="lazy"
@@ -536,6 +546,10 @@
       item.addEventListener("click", () => openLightbox(originalIndex, isVideo));
       item.addEventListener("keydown", (e) => { if (e.key === "Enter") openLightbox(originalIndex, isVideo); });
       albumGrid.appendChild(item);
+      if (isVideo) {
+        const video = item.querySelector("video");
+        if (video) video.play().catch(() => {});
+      }
     });
   }
 
@@ -567,8 +581,12 @@
       video.src = safeMediaUrl(a.file_url);
       video.controls = true;
       video.autoplay = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
       video.style.cssText = "max-width:90vw;max-height:82dvh;border-radius:14px;";
       lightboxContent.appendChild(video);
+      video.play().catch(() => {});
     } else {
       const img = document.createElement("img");
       img.src = safeMediaUrl(a.file_url);
@@ -886,24 +904,35 @@
   // Save Tab 1: Event Info
   adminInfoForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const nextAge = Number.parseInt(cfgAge.value, 10);
+    const nextPin = cfgAdminPin.value.trim() || eventInfoState.admin_pin || "2906";
     const updated = {
-      child_name: cfgChildName.value.trim(),
-      child_full_name: cfgChildFullName.value.trim(),
-      age: parseInt(cfgAge.value),
-      birth_date: cfgBirthDate.value.trim(),
+      child_name: cfgChildName.value.trim() || eventInfoState.child_name || "Jimbuy",
+      child_full_name: cfgChildFullName.value.trim() || eventInfoState.child_full_name || "Aghnia Azkayla Nadhifa",
+      age: Number.isFinite(nextAge) ? nextAge : Number(eventInfoState.age || 2),
+      birth_date: cfgBirthDate.value.trim() || eventInfoState.birth_date || "29 Juni 2024",
       event_date: eventInfoState.event_date || "Minggu, 28 Juni 2026",
       event_time: eventInfoState.event_time || "18.00 WIB - Selesai",
       event_venue: eventInfoState.event_venue || "Rumah Kayla",
       event_address: cfgEventAddress.value.trim(),
       google_maps_url: eventInfoState.google_maps_url || "https://maps.app.goo.gl/C6QYsDA3QMtcsyks6",
       dress_code: eventInfoState.dress_code || "Ocean Blue & Sea Creatures 🌊🦈",
-      admin_pin: cfgAdminPin.value.trim(),
+      admin_pin: nextPin,
       gift_bank: cfgGiftBank.value.trim(),
       gift_number: cfgGiftNumber.value.trim(),
       gift_name: cfgGiftName.value.trim(),
       fun_quote: cfgFunQuote ? cfgFunQuote.value.trim() : "",
       fun_quote_author: cfgFunQuoteAuthor ? cfgFunQuoteAuthor.value.trim() : ""
     };
+
+    if (updated.age < 1 || updated.age > 120) {
+      showToast("Umur harus angka 1 sampai 120.");
+      return;
+    }
+    if (updated.admin_pin.length < 4 || updated.admin_pin.length > 12) {
+      showToast("PIN admin harus 4 sampai 12 karakter.");
+      return;
+    }
 
     if (isSupabaseConfigured) {
       const { error } = await supabase
@@ -1182,6 +1211,8 @@
 
       if (!error && data) {
         playlist.push(data[0]);
+        currentTrackIndex = playlist.length - 1;
+        syncMusicUi();
         showToast("Lagu ditambahkan ke Playlist! 🎵");
         newSongTitle.value = "";
         newSongArtist.value = "";
@@ -1192,6 +1223,8 @@
       }
     } else {
       playlist.push(newSong);
+      currentTrackIndex = playlist.length - 1;
+      syncMusicUi();
       showToast("Offline: Lagu ditambahkan! 🎵");
       newSongTitle.value = "";
       newSongArtist.value = "";
@@ -2617,10 +2650,7 @@
     initScrollReveal();
 
     // Prepare active playlist metadata UI
-    if (playlist.length > 0) {
-      musicTitle.textContent = playlist[currentTrackIndex].title;
-      musicArtist.textContent = playlist[currentTrackIndex].artist;
-    }
+    syncMusicUi();
 
     setTimeout(() => {
       loadingScreen.classList.add("hidden");
@@ -2632,6 +2662,7 @@
     loadAllData()
       .then(() => {
         prepareBirthdayPhoto();
+        syncMusicUi();
         recordVisitor();
       })
       .catch((err) => {

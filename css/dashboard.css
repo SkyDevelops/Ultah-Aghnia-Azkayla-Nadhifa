@@ -3663,3 +3663,6 @@
     font-size: 0.84rem;
   }
 }
+.album-item video + .video-overlay {
+  display: none;
+}
