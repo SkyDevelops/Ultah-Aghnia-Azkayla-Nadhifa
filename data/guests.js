@@ -32,7 +32,7 @@ const EVENT_INFO = {
   childName: "Jimbuy",
   childFullName: "Aghnia Azkayla Nadhifa",
   age: 2,
-  birthDate: "29 Juni 2024",
+  birthDate: "29 Juni 2024 Surabaya",
   eventDate: "Minggu, 28 Juni 2026",
   eventTime: "18.00 WIB - Selesai",
   eventVenue: "Rumah Kayla",

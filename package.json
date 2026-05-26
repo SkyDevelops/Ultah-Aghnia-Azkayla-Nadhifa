@@ -1,0 +1,12 @@
+{
+  "name": "ultah-kay-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static birthday invitation website for Kayla.",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve-static.mjs",
+    "start": "node scripts/serve-static.mjs",
+    "check": "node --check js/guest.js && node --check js/dashboard.js && node --check js/confetti.js && node --check data/guests.js"
+  }
+}

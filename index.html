@@ -54,30 +54,32 @@
   <div class="guest-instruction">
     <p>
       <span>🫧</span>
-      Pilih namamu dalam daftar tamu di bawah ini
+      Masukkan nama dan alamat Anda untuk menyelam ke pesta!
     </p>
   </div>
 
-  <!-- Search Box -->
-  <div class="search-wrapper">
-    <div class="search-box">
-      <span class="search-icon">🔍</span>
-      <input type="text" class="search-input" id="searchInput"
-        placeholder="Cari namamu di sini..."
-        autocomplete="off" autocorrect="off" spellcheck="false"
-        inputmode="search" aria-label="Cari nama tamu" />
-    </div>
+  <!-- Profile Form -->
+  <div class="search-wrapper" style="max-width: 480px; margin: 0 auto 40px;">
+    <form id="profileForm" autocomplete="off" class="guest-form" style="display: flex; flex-direction: column; gap: 16px; background: white; padding: 28px; border-radius: var(--radius); box-shadow: 0 8px 32px rgba(10,38,71,0.1); border: 2.5px solid rgba(0,188,212,0.25);">
+      <div class="form-group" style="text-align: left; margin-bottom: 0;">
+        <label class="form-label" for="guestNameInput" style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-light); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Nama Lengkap / Panggilan</label>
+        <div style="position: relative; display: flex; align-items: center;">
+          <span style="position: absolute; left: 16px; font-size: 1.1rem; pointer-events: none;">🦈</span>
+          <input type="text" id="guestNameInput" placeholder="Tulis nama Anda di sini..." required maxlength="50" style="width: 100%; padding: 14px 16px 14px 44px; background: var(--bg); border: 2px solid var(--aqua-light); border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 0.95rem; color: var(--text); font-weight: 600; outline: none; transition: all 0.2s;" />
+        </div>
+      </div>
+      <div class="form-group" style="text-align: left; margin-bottom: 0;">
+        <label class="form-label" for="guestAddressInput" style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-light); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Alamat Rumah / Kota Asal</label>
+        <div style="position: relative; display: flex; align-items: center;">
+          <span style="position: absolute; left: 16px; font-size: 1.1rem; pointer-events: none;">🏠</span>
+          <input type="text" id="guestAddressInput" placeholder="Tulis alamat/kota Anda..." required maxlength="100" style="width: 100%; padding: 14px 16px 14px 44px; background: var(--bg); border: 2px solid var(--aqua-light); border-radius: var(--radius-pill); font-family: var(--font-body); font-size: 0.95rem; color: var(--text); font-weight: 600; outline: none; transition: all 0.2s;" />
+        </div>
+      </div>
+      <button type="submit" class="submit-wish-btn" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #0D47A1, #00BCD4); color: white; border: none; border-radius: var(--radius-pill); font-family: var(--font-body); font-weight: 800; font-size: 1rem; cursor: pointer; transition: all 0.25s cubic-bezier(.34,1.56,.64,1); box-shadow: 0 6px 20px rgba(0,188,212,0.35); display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px;">
+        Masuk ke Pesta 🐬✨
+      </button>
+    </form>
   </div>
-
-  <!-- Guest List -->
-  <section class="guest-list-section" aria-label="Daftar Tamu">
-    <p class="guest-count" id="guestCount"></p>
-    <div class="guest-grid" id="guestGrid" role="list"></div>
-    <div class="no-results" id="noResults" aria-live="polite">
-      <span class="no-results-icon">🐡</span>
-      <p>Nama tidak ditemukan.<br>Coba kata kunci yang berbeda.</p>
-    </div>
-  </section>
 
 </main>
 
@@ -87,7 +89,6 @@
 </footer>
 
 <!-- Scripts -->
-<script src="data/guests.js"></script>
 <script src="js/confetti.js"></script>
 <script src="js/guest.js"></script>
 </body>
